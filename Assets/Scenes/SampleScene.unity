@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e03a4067dfe764c9f5853dacee4fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 330585545}
 --- !u!135 &1520901375
 SphereCollider:
   m_ObjectHideFlags: 0
