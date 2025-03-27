@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseControls : MonoBehaviour
@@ -10,13 +11,15 @@ public class MouseControls : MonoBehaviour
 
     Vector3 _worldPosition;
    
-    //Use a raycast from the main camera
-    // Make a camera variable to get a camera 
-    //Then cast a ray from the camera to see if we hit something
-    //Probably use the raycast thing to set the position of the object
-
+   
     void Update()
     {
-        
+        if (_camera)
+        {
+            _worldPosition = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(_camera.transform.position.z)));
+            transform.position = _worldPosition;
+        }
+        else
+            Debug.LogWarning("MouseControls: No camera assigned!");
     }
 }
