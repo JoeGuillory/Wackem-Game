@@ -19,6 +19,11 @@ public class BallBehaviour : MonoBehaviour
         _ballRigidbody = GetComponent<Rigidbody>(); 
     }
 
+    private void Update()
+    {
+       
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (_ballRigidbody)
