@@ -8,7 +8,8 @@ public class BallBehaviour : MonoBehaviour
 
     private Rigidbody _ballRigidbody;
 
-    private bool _onHit;
+    [SerializeField]
+    private float _startPower = 10;
 
 
    
@@ -23,9 +24,9 @@ public class BallBehaviour : MonoBehaviour
         if (_ballRigidbody)
             _ballRigidbody.isKinematic = false;
 
-        
+        _ballRigidbody.AddForce((transform.right + (transform.up / 2)) * _startPower);
 
-        _onHit = true;
+        
     }
 
     

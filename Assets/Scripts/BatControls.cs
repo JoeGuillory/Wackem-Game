@@ -11,11 +11,12 @@ public class BatControls : MonoBehaviour
     private float _forceScaler;
 
     private Rigidbody _rigidbody;
+    private HingeJoint _mouseJoint;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        
+        _mouseJoint = GetComponent<HingeJoint>();
 
     }
 
