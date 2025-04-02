@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     private float _ballStartingPosition;
     private float _ballCurrentPosition;
+    private float _longestDistance;
 
 
     public void IsStarted(bool started)
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _longestDistance = 0;
         if (!_ball)
             return;
         _started = false;
@@ -63,7 +65,14 @@ public class GameManager : MonoBehaviour
         }
 
         if (_ballDistanceText)
-            _ballDistanceText.text = (Mathf.Abs(_ballCurrentPosition - _ballStartingPosition) / 3).ToString("0.0") + " ft";
+        {
+            float currentDistance = (Mathf.Abs(_ballCurrentPosition - _ballStartingPosition) / 3);
+
+            if (currentDistance > _longestDistance)
+               _longestDistance = currentDistance;
+
+            _ballDistanceText.text = _longestDistance.ToString("0.0") + " ft";
+        }
         else
             Debug.LogWarning("GameManager: No Text object inserted!");
       

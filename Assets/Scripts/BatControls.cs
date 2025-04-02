@@ -26,7 +26,8 @@ public class BatControls : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             if (_rigidbody)
-                _rigidbody.AddForce(transform.forward * _forceScaler);
+                _rigidbody.AddTorque(-transform.right * _forceScaler * Time.deltaTime ,ForceMode.Impulse);
+             
 
             
         }

@@ -29,7 +29,8 @@ public class BallBehaviour : MonoBehaviour
         if (_ballRigidbody)
             _ballRigidbody.isKinematic = false;
 
-        _ballRigidbody.AddForce((transform.right + (transform.up / 2)) * _startPower);
+        if(collision.gameObject.tag == "Bat")
+            _ballRigidbody.AddForce((transform.right + (transform.up / 2)) * _startPower);
 
         
     }

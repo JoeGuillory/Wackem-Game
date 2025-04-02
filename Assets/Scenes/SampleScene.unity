@@ -1652,7 +1652,7 @@ PrefabInstance:
     - target: {fileID: 4591382500289342406, guid: 809e52c4176ef0548835bd5aaf1b5a9e,
         type: 3}
       propertyPath: _forceScaler
-      value: 60
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 7142042678074799506, guid: 809e52c4176ef0548835bd5aaf1b5a9e,
         type: 3}
@@ -1934,7 +1934,7 @@ PrefabInstance:
     - target: {fileID: 8769307569599895404, guid: 56ddf0cf4fa96c743b5ea37272289bd9,
         type: 3}
       propertyPath: m_AngularDrag
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8769307569599895404, guid: 56ddf0cf4fa96c743b5ea37272289bd9,
         type: 3}
