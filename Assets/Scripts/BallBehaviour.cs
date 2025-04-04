@@ -6,23 +6,13 @@ using UnityEngine;
 public class BallBehaviour : MonoBehaviour
 {
 
-   
+    private bool _isHit = false;
 
- 
-    private void Start()
-    {
-      
-    }
-
-    private void Update()
-    {
-       
-    }
-
-    private void OnCollisionEnter(Collision collision)
+    public bool IsHit { get{ return _isHit; } }
+    private void OnTriggerEnter(Collider other)
     {
 
+        if (other.gameObject.tag == "Bat")
+            _isHit = true;
     }
-
-    
 }

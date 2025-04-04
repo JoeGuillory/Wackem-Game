@@ -18,19 +18,21 @@ public class BatControls : MonoBehaviour
     private float _batPower = 30;
     public float BatPower { get { return _batPower; } }
 
+
+    private float _batPowerMultiplier = 1;
     private float _maxRotationSpeed = 80;
     private float _maxRotation = 80;
     private float _maxBatPowerDistance = 3;
     private float _maxBatPowerSpeed = 4;
-
     private bool _rotationSet = false;
     private bool _powerSet = false;
     private Rigidbody _rigidbody;
-
     private float _direction = 1;
     private float _amountMoved;
     private bool _mouseClicked;
     private bool _isSwung = false;
+
+    private Vector3 _startPosition;
 
     private void Start()
     {
@@ -47,8 +49,11 @@ public class BatControls : MonoBehaviour
             BatRotation();
 
         if(_rotationSet && !_powerSet && !_mouseClicked)
+        {
+            BatMultiplier();
             if (Input.GetMouseButtonDown(0))
                 _powerSet = true;
+        }
 
         if (_powerSet && _rotationSet && !_isSwung)
         {
@@ -77,7 +82,8 @@ public class BatControls : MonoBehaviour
             transform.DOKill();
             other.attachedRigidbody.isKinematic = false;
 
-            other.attachedRigidbody.AddForce(other.transform.up + other.transform.right * _batPower, ForceMode.Impulse);
+            Vector3 attackAngle = (other.transform.localPosition - transform.position).normalized;
+            other.attachedRigidbody.AddForce(( attackAngle * _batPower) * _batPowerMultiplier, ForceMode.Impulse);
 
         }
 
@@ -107,6 +113,7 @@ public class BatControls : MonoBehaviour
             _amountMoved = 0;
             _direction = -1;
             _mouseClicked = true;
+            _startPosition = transform.localPosition;
         }
     }
 
@@ -130,5 +137,20 @@ public class BatControls : MonoBehaviour
     private void SwingBat()
     {
         transform.DOMove(_ball.transform.position, 0.5f).SetEase(Ease.InOutCirc);
+    }
+
+    private void BatMultiplier()
+    {
+        Vector3 difference = -1 * (transform.localPosition - _startPosition);
+
+        if(difference.x == 0)
+        {
+            _batPowerMultiplier = 1;
+        }
+        else
+        {
+            _batPowerMultiplier = difference.x;
+        }
+
     }
 }
